@@ -1,0 +1,21 @@
+<?php declare(strict_types=1);
+
+namespace App\Admin\Controller;
+
+use Oyhdd\Admin\Controller\AdminController;
+use Hyperf\HttpServer\Annotation\Controller;
+use Hyperf\HttpServer\Annotation\RequestMapping;
+
+/**
+ * @Controller(prefix="admin")
+ */
+class HomeController extends AdminController
+{
+    /**
+     * @RequestMapping(path="", methods="get")
+     */
+    public function index()
+    {
+        return $this->render('index');
+    }
+}
