@@ -6,7 +6,7 @@
         "hyperf",
         "adminlte",
         "admin",
-        "administrator"
+        "administrator",
         "view"
     ],
     "description": "Hyperf Admin",
