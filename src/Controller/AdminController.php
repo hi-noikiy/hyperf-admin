@@ -9,6 +9,7 @@ use Psr\Container\ContainerInterface;
 use Hyperf\Contract\SessionInterface;
 use Hyperf\View\RenderInterface;
 use Phper666\JwtAuth\Jwt;
+use Illuminate\Support\MessageBag;
 
 class AdminController
 {
@@ -65,5 +66,19 @@ class AdminController
         $data['_csrf_token'] = $this->session->regenerateToken();
 
         return $this->render->render($view, compact('data'));
+    }
+
+    /**
+     * Flash a toastr message bag to session.
+     *
+     * @param string $message
+     * @param string $type
+     * @param array  $options
+     */
+    public function admin_toastr($message = '', $type = 'success', $options = [])
+    {
+        $toastr = new MessageBag(get_defined_vars());
+// var_dump($toastr);
+        // session()->flash('toastr', $toastr);
     }
 }

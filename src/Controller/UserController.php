@@ -31,7 +31,8 @@ class UserController extends AdminController
 
         $user = AdminUser::where(['username' => $username, 'status' => AdminUser::STATUS_ENABLE])->first();
         if (empty($user)) {
-            return $this->helper->error(Code::RECORD_NOT_FOUND, "用户{$username}不存在", []);
+            // $this->admin_toastr('hehehe');
+            // return $this->helper->error(Code::RECORD_NOT_FOUND, "用户{$username}不存在", []);
         }
         // if (!$this->hash->check($password, $user->password)) {
         //     return $this->helper->error(Code::VALIDATE_ERROR, "用户名或者密码错误", []);

@@ -33,6 +33,6 @@
         </div>
 
         <!-- 页面js /-->
-        @include('layout.js')
+        <!-- @include('layout.js') -->
     </body>
 </html>

@@ -17,7 +17,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="/vendor/hyperf-admin/AdminLTE/dist/css/adminlte.min.css">
 </head>
-@include('layout.tips')
+
 <body class="hold-transition login-page" @if(config('admin.login_background_image'))style="background: url({{config('admin.login_background_image')}}) no-repeat;background-size: cover;"@endif>
 
     <div class="login-box">
@@ -72,6 +72,13 @@
     <!-- AdminLTE App -->
     <script src="/vendor/hyperf-admin/AdminLTE/dist/js/adminlte.min.js"></script>
 
-</script>
+    <script type="text/javascript">
+//        $(document).Toasts('create', {
+//            class: 'bg-danger', 
+//            title: 'Toast Title',
+//            subtitle: 'Subtitle',
+//            body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+//        })
+    </script>
 </body>
 </html>
