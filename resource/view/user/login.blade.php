@@ -72,13 +72,6 @@
     <!-- AdminLTE App -->
     <script src="/vendor/hyperf-admin/AdminLTE/dist/js/adminlte.min.js"></script>
 
-    <script type="text/javascript">
-//        $(document).Toasts('create', {
-//            class: 'bg-danger', 
-//            title: 'Toast Title',
-//            subtitle: 'Subtitle',
-//            body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-//        })
-    </script>
+    @include('common.toastr')
 </body>
 </html>

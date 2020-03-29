@@ -5,9 +5,12 @@ namespace App\Admin\Controller;
 use Oyhdd\Admin\Controller\AdminController;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\RequestMapping;
+use Hyperf\HttpServer\Annotation\Middleware;
+use Oyhdd\Admin\Middleware\AuthMiddleware;
 
 /**
  * @Controller(prefix="admin")
+ * @Middleware(AuthMiddleware::class)
  */
 class HomeController extends AdminController
 {

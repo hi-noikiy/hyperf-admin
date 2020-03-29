@@ -64,6 +64,10 @@ class AdminController
             $view = 'layout.content';
         }
         $data['_csrf_token'] = $this->session->regenerateToken();
+        $data['toastr'] = [];
+        if ($this->session->has('toastr')) {
+            $data['toastr'] = $this->session->remove('toastr');
+        }
 
         return $this->render->render($view, compact('data'));
     }
@@ -71,14 +75,13 @@ class AdminController
     /**
      * Flash a toastr message bag to session.
      *
-     * @param string $message
-     * @param string $type
-     * @param array  $options
+     * @param string    $message   提示消息
+     * @param string    $type      消息类型: success,info,warning,danger,maroon
+     * @param array     $options   其他参数[timeout:超时自动隐藏(ms), title:标题, subtitle:子标题, icon:图标, image:图片, imageAlt: 图片说明]
      */
-    public function admin_toastr($message = '', $type = 'success', $options = [])
+    public function admin_toastr(string $message = '', string $type = 'success', array $options = [])
     {
         $toastr = new MessageBag(get_defined_vars());
-// var_dump($toastr);
-        // session()->flash('toastr', $toastr);
+        $this->session->flash('toastr', $toastr);
     }
 }

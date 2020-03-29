@@ -33,6 +33,9 @@
         </div>
 
         <!-- 页面js /-->
-        <!-- @include('layout.js') -->
+        @include('layout.js')
+
+        <!-- toastr -->
+        @include('common.toastr')
     </body>
 </html>

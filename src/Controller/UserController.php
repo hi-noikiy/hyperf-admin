@@ -5,14 +5,24 @@ namespace Oyhdd\Admin\Controller;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\RequestMapping;
 use Hyperf\Di\Annotation\Inject;
-use Hyperf\Contract\SessionInterface;
 use Oyhdd\Admin\Model\AdminUser;
+use Illuminate\Hashing\BcryptHasher;
+use Hyperf\HttpServer\Annotation\Middleware;
+use Oyhdd\Admin\Middleware\AuthMiddleware;
+use Hyperf\HttpMessage\Cookie\Cookie;
 
 /**
  * @Controller(prefix="admin/user")
  */
 class UserController extends AdminController
 {
+
+    /**
+     * @Inject
+     * @var BcryptHasher
+     */
+    protected $hash;
+
     /**
      * @RequestMapping(path="login")
      * 
@@ -25,30 +35,20 @@ class UserController extends AdminController
      */
     public function login($username)
     {
-        $username = htmlspecialchars($this->request->input('username', ''));
-        $password = htmlspecialchars($this->request->input('password', ''));
-        $remember = intval($this->request->input('remember', 0));
+        if ($this->request->isMethod("POST")) {
+            $username = htmlspecialchars($this->request->input('username', ''));
+            $password = htmlspecialchars($this->request->input('password', ''));
+            $remember = intval($this->request->input('remember', 0));
 
-        $user = AdminUser::where(['username' => $username, 'status' => AdminUser::STATUS_ENABLE])->first();
-        if (empty($user)) {
-            // $this->admin_toastr('hehehe');
-            // return $this->helper->error(Code::RECORD_NOT_FOUND, "用户{$username}不存在", []);
+            $user = AdminUser::where(['username' => $username, 'status' => AdminUser::STATUS_ENABLE])->first();
+            if (!empty($user) && $this->hash->check($password, $user->password)) {
+                $token = 'Bearer '.(string) $this->jwt->getToken(['id' => $user->id]);
+                $cookie = new Cookie('Authorization', $token);
+                return $this->response->withCookie($cookie)->redirect('/admin');
+            }
+            $this->admin_toastr("用户名或者密码错误", 'danger', ['timeout' => 60, 'title' => "Error"]);
         }
-        // if (!$this->hash->check($password, $user->password)) {
-        //     return $this->helper->error(Code::VALIDATE_ERROR, "用户名或者密码错误", []);
-        // }
 
-        // $user->last_login_time = Carbon::now();
-        // $user->save();
-        // $token = (string) $this->jwt->getToken(['id' => $user->id]);
-        // $user['menu'] = $user->getMenu();
-        // $user['all_permissions'] = $user->getAllPermissions();
-
-        // return $this->helper->success([
-        //     'user' => $user, 
-        //     'token' => $token, 
-        //     'expires_in' => $this->jwt->getTTL()
-        // ]);
         return $this->render('user.login', [], true);
     }
 }
