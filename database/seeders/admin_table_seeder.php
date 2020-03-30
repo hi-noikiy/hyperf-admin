@@ -21,6 +21,7 @@ class AdminTableSeeder extends Seeder
             'username' => 'admin',
             'password' => $hash->make('123456'),
             'name'     => 'Administrator',
+            'avatar'   => '/vendor/hyperf-admin/AdminLTE/dist/img/user2-160x160.jpg',
         ]);
 
         // create a role.

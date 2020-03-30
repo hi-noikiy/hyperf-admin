@@ -39,7 +39,7 @@ class ConfigProvider
 
                     // 静态资源
                     'document_root' => BASE_PATH . '/public',
-                    'static_handler_locations' => ['/'],
+                    'static_handler_locations' => [],
                     'enable_static_handler' => true,
                 ],
                 'callbacks' => [
