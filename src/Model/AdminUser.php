@@ -37,6 +37,8 @@ class AdminUser extends BaseModel
      */
     protected $casts = ['id' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
 
+    protected $hidden = ['password', 'remember_token'];
+
     /**
      * A user has and belongs to many roles.
      *

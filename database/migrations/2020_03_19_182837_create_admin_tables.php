@@ -21,11 +21,12 @@ class CreateAdminTables extends Migration
          */
         Schema::create('admin_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username', 190)->unique();
-            $table->string('password', 60);
-            $table->string('name');
-            $table->string('avatar')->nullable();
-            $table->string('remember_token', 100)->nullable();
+            $table->string('username', 190)->unique()->comment('账号');
+            $table->string('password', 60)->comment('密码');
+            $table->string('name')->comment('昵称');
+            $table->string('avatar')->nullable()->comment('头像');
+            $table->string('remember_token', 100)->nullable()->comment('记住我');
+            $table->text('customize_style', 100)->nullable()->comment('网站自定义样式');
             $table->tinyInteger('status')->default(1)->comment('状态: -1删除 0禁用 1正常');
             $table->timestamps();
         });

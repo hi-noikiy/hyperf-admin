@@ -55,18 +55,23 @@ class AdminController
      * @param  string   $view
      * @param  array    $data
      * @param  bool     $direct_render
-     * @return html
+     * @return view
      */
-    public function render(string $view, array $data = [], bool $direct_render = false)
+    protected function render(string $view, array $data = [], bool $direct_render = false)
     {
         if (!$direct_render) {
             $data['_view'] = $view;
             $view = 'layout.content';
         }
         $data['_csrf_token'] = $this->session->regenerateToken();
-        $data['toastr'] = [];
+        $data['_toastr'] = [];
         if ($this->session->has('toastr')) {
-            $data['toastr'] = $this->session->remove('toastr');
+            $data['_toastr'] = $this->session->remove('toastr');
+        }
+        $user = $this->request->getAttribute('user');
+        $data['_user'] = [];
+        if (!empty($user)) {
+            $data['_user'] = $user->toArray();
         }
 
         return $this->render->render($view, compact('data'));
@@ -79,9 +84,15 @@ class AdminController
      * @param string    $type      消息类型: success,info,warning,danger,maroon
      * @param array     $options   其他参数[timeout:超时自动隐藏(ms), title:标题, subtitle:子标题, icon:图标, image:图片, imageAlt: 图片说明]
      */
-    public function admin_toastr(string $message = '', string $type = 'success', array $options = [])
+    protected function admin_toastr(string $message = '', string $type = 'success', array $options = [])
     {
         $toastr = new MessageBag(get_defined_vars());
         $this->session->flash('toastr', $toastr);
+    }
+
+
+    protected function reponseJson(array $data = [], string $message = 'succcess', int $code = 0 )
+    {
+        return compact('code', 'message', 'data');
     }
 }
