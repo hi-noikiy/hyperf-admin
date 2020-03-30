@@ -10,7 +10,7 @@
         <!-- 页面css /-->
         @include('layout.css')
     </head>
-    <body class="hold-transition {{config('admin.skin')}} {{ join(' ', config('admin.layout')) }}">
+    <body class="hold-transition {{ join(' ', config('admin.layout')) }}">
         <div class="wrapper">
 
             @include('layout.navbar')

@@ -21,4 +21,21 @@ class HomeController extends AdminController
     {
         return $this->render('index');
     }
+
+    /**
+     * @RequestMapping(path="search")
+     */
+    public function search()
+    {
+        $search = $this->request->input('q');
+        return $this->render('index',['_search' => $search]);
+    }
+
+    /**
+     * @RequestMapping(path="error")
+     */
+    public function error()
+    {
+        return $this->render('common.error');
+    }
 }

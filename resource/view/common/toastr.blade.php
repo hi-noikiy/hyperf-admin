@@ -1,8 +1,8 @@
-@if(!empty($data['toastr']))
+@if(!empty($data['_toastr']))
     @php
-        $type     = "bg-" . \Illuminate\Support\Arr::get($data['toastr']->get('type'), 0, 'success');
-        $message  = \Illuminate\Support\Arr::get($data['toastr']->get('message'), 0, '');
-        $options  = $data['toastr']->get('options', []);
+        $type     = "bg-" . \Illuminate\Support\Arr::get($data['_toastr']->get('type'), 0, 'success');
+        $message  = \Illuminate\Support\Arr::get($data['_toastr']->get('message'), 0, '');
+        $options  = $data['_toastr']->get('options', []);
         $autohide = !empty($options['timeout']);
         $delay    = ($options['timeout'] ?? 60) * 1000;
         $title    = $options['title'] ?? '';
