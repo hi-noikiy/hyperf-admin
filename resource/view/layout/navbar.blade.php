@@ -25,7 +25,7 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- User Account Menu -->
-        <li class="nav-item dropdown user-menu">
+        <li class="nav-item dropdown user-menu mt-1">
             <a data-toggle="dropdown" href="#">
                 <img src="{{ $data['_user']['avatar'] ?? ' ' }}" class="img-size-32 mr-2 ml-2 img-circle" alt="{{ $data['_user']['name'] ?? 'User Image' }}">
             </a>

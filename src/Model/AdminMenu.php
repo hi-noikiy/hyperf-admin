@@ -4,6 +4,7 @@ namespace Oyhdd\Admin\Model;
 
 use Hyperf\Database\Model\Relations\BelongsToMany;
 use Oyhdd\Admin\Model\AdminRole;
+use Illuminate\Support\Arr;
 
 /**
  * @property int $id 
@@ -49,5 +50,30 @@ class AdminMenu extends BaseModel
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(AdminRole::class, 'admin_role_menu', 'menu_id', 'role_id');
+    }
+
+    /**
+     * Left sider-bar menu.
+     *
+     * @return array
+     */
+    public static function getMenuTree(): array
+    {
+        $tree = [];
+        $items = AdminMenu::all()->toArray();
+        if (empty($items)) {
+            return $tree;
+        }
+
+        $items = array_column($items, null, 'id');
+        foreach ($items as $id => $item) {
+            if (isset($items[$item['parent_id']])) {
+                $items[$item['parent_id']]['children'][] = &$items[$id];
+            } else {
+                $tree[] = &$items[$id];
+            }
+        }
+
+        return $tree;
     }
 }

@@ -1,30 +1,22 @@
 @if(!empty($data['_toastr']))
     @php
-        $type     = "bg-" . \Illuminate\Support\Arr::get($data['_toastr']->get('type'), 0, 'success');
+        $type     = \Illuminate\Support\Arr::get($data['_toastr']->get('type'), 0, 'success');
         $message  = \Illuminate\Support\Arr::get($data['_toastr']->get('message'), 0, '');
-        $options  = $data['_toastr']->get('options', []);
-        $autohide = !empty($options['timeout']);
-        $delay    = ($options['timeout'] ?? 60) * 1000;
-        $title    = $options['title'] ?? '';
-        $subtitle    = $options['subtitle'] ?? '';
-        $position    = $options['position'] ?? 'topRight';
-        $icon    = $options['icon'] ?? '';
-        $image    = $options['image'] ?? '';
-        $imageAlt    = $options['imageAlt'] ?? '';
+        $timeout    = \Illuminate\Support\Arr::get($data['_toastr']->get('timeout'), 0, 5) * 1000;
     @endphp
 
     <script type="text/javascript">
-        $(document).Toasts('create', {
-            class: "{!!  $type !!}",
-            title: "{!! $title !!}",
-            autohide: true,
-            position: "{!! $position !!}",
-            delay: {!! $delay !!},
-            subtitle: "{!! $subtitle !!}",
-            body: "{!! $message !!}",
-            icon: "{!! $icon !!}",
-            image: "{!! $image !!}",
-            imageAlt: "{!! $imageAlt !!}",
+      $(function() {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: {!! $timeout !!},
+            });
+            Toast.fire({
+                type: "{!!  $type !!}",
+                title: "{!! $message !!}",
+            })
         })
     </script>
 @endif

@@ -10,6 +10,7 @@ use Hyperf\Contract\SessionInterface;
 use Hyperf\View\RenderInterface;
 use Phper666\JwtAuth\Jwt;
 use Illuminate\Support\MessageBag;
+use Oyhdd\Admin\Model\AdminMenu;
 
 class AdminController
 {
@@ -74,6 +75,7 @@ class AdminController
             $data['_user'] = $user->toArray();
         }
 
+        $data['_menu'] = AdminMenu::getMenuTree();
         return $this->render->render($view, compact('data'));
     }
 
@@ -90,9 +92,4 @@ class AdminController
         $this->session->flash('toastr', $toastr);
     }
 
-
-    protected function reponseJson(array $data = [], string $message = 'succcess', int $code = 0 )
-    {
-        return compact('code', 'message', 'data');
-    }
 }
