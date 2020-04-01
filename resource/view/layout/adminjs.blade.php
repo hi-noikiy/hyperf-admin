@@ -3,7 +3,8 @@
         $customize_style = $data['_user']['customize_style'];
     @endphp
 
-    <script type="text/javascript">
+<script type="text/javascript">
+    $(function () {
         let customize_style = {!! $customize_style !!}
         for (let selector in customize_style) {
             for (let class_name in customize_style[selector]) {
@@ -20,7 +21,8 @@
                 }
             }
         }
-    </script>
+    })
+</script>
 @endif
 
 <script src="/vendor/hyperf-admin/AdminLTE/dist/js/hyperf-admin.js"></script>

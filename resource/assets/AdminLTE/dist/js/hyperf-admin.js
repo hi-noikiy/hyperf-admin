@@ -1,6 +1,7 @@
 (function ($) {
   'use strict'
 
+  var uri = window.location.pathname
   var $sidebar   = $('.control-sidebar')
   var $container = $('<div />', {
     class: 'p-3 control-sidebar-content'
@@ -63,6 +64,27 @@
   var $no_border_container = $('<div />', {'class': 'mb-1'}).append($no_border_checkbox).append('<span>无导航栏边框</span>')
   $container.append($no_border_container)
 
+  var $layout_boxed_body_checkbox = $('<input />', {
+    type   : 'checkbox',
+    value  : 1,
+    checked: $('body').hasClass('layout-boxed'),
+    'class': 'mr-1',
+    'id': 'body_layout-boxed'
+  }).on('click', function () {
+    var selector = 'body'
+    var class_name = 'layout-boxed'
+    var enable = 0
+    if ($(this).is(':checked')) {
+      enable = 1
+      $(selector).addClass(class_name)
+    } else {
+      $(selector).removeClass(class_name)
+    }
+    saveCustomizeStyle(selector, class_name, enable)
+  })
+  var $layout_boxed_body_container = $('<div />', {'class': 'mb-1'}).append($layout_boxed_body_checkbox).append('<span>Boxed模式</span>')
+  $container.append($layout_boxed_body_container)
+
   var $text_sm_body_checkbox = $('<input />', {
     type   : 'checkbox',
     value  : 1,
@@ -102,7 +124,7 @@
     }
     saveCustomizeStyle(selector, class_name, enable)
   })
-  var $text_sm_header_container = $('<div />', {'class': 'mb-1'}).append($text_sm_header_checkbox).append('<span>缩小导航栏字体</span>')
+  var $text_sm_header_container = $('<div />', {'class': 'mb-1 pl-3'}).append($text_sm_header_checkbox).append('<span>缩小导航栏字体</span>')
   $container.append($text_sm_header_container)
 
   var $text_sm_sidebar_checkbox = $('<input />', {
@@ -123,7 +145,7 @@
     }
     saveCustomizeStyle(selector, class_name, enable)
   })
-  var $text_sm_sidebar_container = $('<div />', {'class': 'mb-1'}).append($text_sm_sidebar_checkbox).append('<span>缩小侧边栏导航字体</span>')
+  var $text_sm_sidebar_container = $('<div />', {'class': 'mb-1 pl-3'}).append($text_sm_sidebar_checkbox).append('<span>缩小侧边栏导航字体</span>')
   $container.append($text_sm_sidebar_container)
 
   var $text_sm_footer_checkbox = $('<input />', {
@@ -144,50 +166,29 @@
     }
     saveCustomizeStyle(selector, class_name, enable)
   })
-  var $text_sm_footer_container = $('<div />', {'class': 'mb-1'}).append($text_sm_footer_checkbox).append('<span>缩小页脚字体</span>')
+  var $text_sm_footer_container = $('<div />', {'class': 'mb-1 pl-3'}).append($text_sm_footer_checkbox).append('<span>缩小页脚字体</span>')
   $container.append($text_sm_footer_container)
 
-  var $fix_navbar_checkbox = $('<input />', {
+  var $text_sm_brand_checkbox = $('<input />', {
     type   : 'checkbox',
     value  : 1,
-    checked: $('body').hasClass('layout-navbar-fixed'),
+    checked: $('.brand-link').hasClass('text-sm'),
     'class': 'mr-1',
-    'id': 'body_layout-navbar-fixed'
+    'id': 'brand-link_text-sm'
   }).on('click', function () {
-    var selector = 'body'
-    var class_name = 'layout-navbar-fixed'
+    var selector = 'brand-link'
+    var class_name = 'text-sm'
     var enable = 0
     if ($(this).is(':checked')) {
       enable = 1
-      $(selector).addClass(class_name)
+      $("."+selector).addClass(class_name)
     } else {
-      $(selector).removeClass(class_name)
+      $("."+selector).removeClass(class_name)
     }
     saveCustomizeStyle(selector, class_name, enable)
   })
-  var $legacy_sidebar_container = $('<div />', {'class': 'mb-1'}).append($fix_navbar_checkbox).append('<span>固定顶部导航栏</span>')
-  $container.append($legacy_sidebar_container)
-
-  var $fix_footer_checkbox = $('<input />', {
-    type   : 'checkbox',
-    value  : 1,
-    checked: $('body').hasClass('layout-footer-fixed'),
-    'class': 'mr-1',
-    'id': 'body_layout-footer-fixed'
-  }).on('click', function () {
-    var selector = 'body'
-    var class_name = 'layout-footer-fixed'
-    var enable = 0
-    if ($(this).is(':checked')) {
-      enable = 1
-      $(selector).addClass(class_name)
-    } else {
-      $(selector).removeClass(class_name)
-    }
-    saveCustomizeStyle(selector, class_name, enable)
-  })
-  var $legacy_sidebar_container = $('<div />', {'class': 'mb-1'}).append($fix_footer_checkbox).append('<span>固定footer</span>')
-  $container.append($legacy_sidebar_container)
+  var $text_sm_brand_container = $('<div />', {'class': 'mb-1 pl-3'}).append($text_sm_brand_checkbox).append('<span>缩小Logo</span>')
+  $container.append($text_sm_brand_container)
 
   var $fix_sidebar_checkbox = $('<input />', {
     type   : 'checkbox',
@@ -209,6 +210,48 @@
   })
   var $legacy_sidebar_container = $('<div />', {'class': 'mb-1'}).append($fix_sidebar_checkbox).append('<span>全部固定<span style="color:#f33232">(将自动刷新)</span></span>')
   $container.append($legacy_sidebar_container)
+
+  var $fix_navbar_checkbox = $('<input />', {
+    type   : 'checkbox',
+    value  : 1,
+    checked: $('body').hasClass('layout-navbar-fixed'),
+    'class': 'mr-1',
+    'id': 'body_layout-navbar-fixed'
+  }).on('click', function () {
+    var selector = 'body'
+    var class_name = 'layout-navbar-fixed'
+    var enable = 0
+    if ($(this).is(':checked')) {
+      enable = 1
+      $(selector).addClass(class_name)
+    } else {
+      $(selector).removeClass(class_name)
+    }
+    saveCustomizeStyle(selector, class_name, enable)
+  })
+  var $fix_navbar_container = $('<div />', {'class': 'mb-1 pl-3'}).append($fix_navbar_checkbox).append('<span>固定顶部导航栏</span>')
+  $container.append($fix_navbar_container)
+
+  var $fix_footer_checkbox = $('<input />', {
+    type   : 'checkbox',
+    value  : 1,
+    checked: $('body').hasClass('layout-footer-fixed'),
+    'class': 'mr-1',
+    'id': 'body_layout-footer-fixed'
+  }).on('click', function () {
+    var selector = 'body'
+    var class_name = 'layout-footer-fixed'
+    var enable = 0
+    if ($(this).is(':checked')) {
+      enable = 1
+      $(selector).addClass(class_name)
+    } else {
+      $(selector).removeClass(class_name)
+    }
+    saveCustomizeStyle(selector, class_name, enable)
+  })
+  var $fix_footer_container = $('<div />', {'class': 'mb-1 pl-3'}).append($fix_footer_checkbox).append('<span>固定footer</span>')
+  $container.append($fix_footer_container)
 
   var $flat_sidebar_checkbox = $('<input />', {
     type   : 'checkbox',
@@ -291,7 +334,7 @@
     }
     saveCustomizeStyle(selector, class_name, enable)
   })
-  var $child_indent_sidebar_container = $('<div />', {'class': 'mb-1'}).append($child_indent_sidebar_checkbox).append('<span>侧边栏样式4</span>')
+  var $child_indent_sidebar_container = $('<div />', {'class': 'mb-1'}).append($child_indent_sidebar_checkbox).append('<span>侧边栏子菜单缩进</span>')
   $container.append($child_indent_sidebar_container)
 
   var $no_expand_sidebar_checkbox = $('<input />', {
@@ -312,31 +355,10 @@
     }
     saveCustomizeStyle(selector, class_name, enable)
   })
-  var $no_expand_sidebar_container = $('<div />', {'class': 'mb-1'}).append($no_expand_sidebar_checkbox).append('<span>鼠标悬停侧边栏时不展开</span>')
+  var $no_expand_sidebar_container = $('<div />', {'class': 'mb-4'}).append($no_expand_sidebar_checkbox).append('<span>鼠标悬停侧边栏时不展开</span>')
   $container.append($no_expand_sidebar_container)
 
-  var $text_sm_brand_checkbox = $('<input />', {
-    type   : 'checkbox',
-    value  : 1,
-    checked: $('.brand-link').hasClass('text-sm'),
-    'class': 'mr-1',
-    'id': 'brand-link_text-sm'
-  }).on('click', function () {
-    var selector = 'brand-link'
-    var class_name = 'text-sm'
-    var enable = 0
-    if ($(this).is(':checked')) {
-      enable = 1
-      $("."+selector).addClass(class_name)
-    } else {
-      $("."+selector).removeClass(class_name)
-    }
-    saveCustomizeStyle(selector, class_name, enable)
-  })
-  var $text_sm_brand_container = $('<div />', {'class': 'mb-4'}).append($text_sm_brand_checkbox).append('<span>缩小Logo</span>')
-  $container.append($text_sm_brand_container)
-
-  $container.append('<h6>导航栏颜色</h6>')
+  $container.append('<h6>顶部导航栏颜色</h6>')
 
   var $navbar_variants        = $('<div />', {
     'class': 'd-flex'
@@ -617,7 +639,7 @@
         type: 'POST',
         data: {
             selector: selector,
-            back_url: window.location.pathname
+            back_url: uri
         },
         success: function(retData) {
           location.reload()

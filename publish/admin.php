@@ -41,4 +41,17 @@ return [
     |
     */
     'login_background_image' => '/vendor/hyperf-admin/AdminLTE/dist/img/bg.jpeg',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application layout
+    |--------------------------------------------------------------------------
+    |
+    | This value is the layout of admin pages.
+    |
+    | Supported: "sidebar-mini", "layout-boxed", "layout-fixed", "layout-navbar-fixed", "layout-footer-fixed"
+    |
+    */
+    'layout' => ['sidebar-mini', 'layout-fixed'],
+
 ];

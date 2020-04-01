@@ -55,9 +55,10 @@ class AdminMenu extends BaseModel
     /**
      * Left sider-bar menu.
      *
+     * @param  string   $uri
      * @return array
      */
-    public static function getMenuTree(): array
+    public static function getMenuTree(string $uri = ''): array
     {
         $tree = [];
         $items = AdminMenu::all()->toArray();
@@ -67,7 +68,14 @@ class AdminMenu extends BaseModel
 
         $items = array_column($items, null, 'id');
         foreach ($items as $id => $item) {
+            $items[$id]['active'] = false;
+            if ($uri == $item['uri']) {
+                $items[$id]['active'] = true;
+            }
             if (isset($items[$item['parent_id']])) {
+                if ($items[$id]['active']) {
+                    $items[$item['parent_id']]['active'] = true;
+                }
                 $items[$item['parent_id']]['children'][] = &$items[$id];
             } else {
                 $tree[] = &$items[$id];

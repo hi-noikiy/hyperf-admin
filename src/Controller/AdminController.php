@@ -75,7 +75,8 @@ class AdminController
             $data['_user'] = $user->toArray();
         }
 
-        $data['_menu'] = AdminMenu::getMenuTree();
+        $uri = $this->request->getPathInfo();
+        $data['_menu'] = AdminMenu::getMenuTree($uri);
         return $this->render->render($view, compact('data'));
     }
 
