@@ -53,6 +53,12 @@
             <i class="fas fa-th-large"></i>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/user/lockscreen" title="锁屏">
+            <i class="fas fa-lock"></i>
+            {{ trans('admin.lockscreen') }}
+            </a>
+        </li>
     </ul>
 </nav>
 <!-- /.navbar -->

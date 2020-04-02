@@ -10,7 +10,7 @@ return [
     | login page.
     |
     */
-    'name' => '<span style="color:white"> Hyperf-admin </span>',
+    'name' => '<span style="color:white"> Hyperf Admin </span>',
 
     /*
     |--------------------------------------------------------------------------
@@ -53,5 +53,16 @@ return [
     |
     */
     'layout' => ['sidebar-mini', 'layout-fixed'],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Lock screen page setting
+    |--------------------------------------------------------------------------
+    */
+    'lockscreen' => [
+        'enable' => true,
+        'name' => 'Hyperf Admin',
+        'lockscreen_background_image' => '',
+    ],
 
 ];

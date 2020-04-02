@@ -73,7 +73,6 @@ class UserController extends AdminController
         return $this->render('user.login', [], true);
     }
 
-
     /**
      * @RequestMapping(path="logout")
      * @Middleware(AuthMiddleware::class)
@@ -89,7 +88,21 @@ class UserController extends AdminController
             $this->jwt->logout($token);
         } catch (\Throwable $t) {
         }
-        return $this->response->redirect('/admin/user/login', [], true);
+        return $this->response->redirect('/admin/user/login');
+    }
+
+
+    /**
+     * @RequestMapping(path="lockscreen")
+     * @Middleware(AuthMiddleware::class)
+     * 
+     * 锁屏
+     * @author Eric
+     * @return view
+     */
+    public function lockscreen()
+    {
+        return $this->render('user.lockscreen', [], true);
     }
 
     /**
