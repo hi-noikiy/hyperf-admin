@@ -60,9 +60,8 @@ return [
     |--------------------------------------------------------------------------
     */
     'lockscreen' => [
-        'enable' => true,
-        'name' => 'Hyperf Admin',
-        'lockscreen_background_image' => '',
+        'enable'           => true,
+        'background_image' => '/vendor/hyperf-admin/AdminLTE/dist/img/bg.jpeg',
     ],
 
 ];

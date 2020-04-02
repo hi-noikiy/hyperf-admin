@@ -9,31 +9,27 @@
 
         <!-- 页面css /-->
         @include('layout.css')
+
     </head>
     <body class="hold-transition {{ join(' ', config('admin.layout')) }}">
         <div class="wrapper">
-
+            <!-- 页面样式自定义 /-->
+            <aside class="control-sidebar control-sidebar-dark"></aside>
+            <!-- 页面导航栏 /-->
             @include('layout.navbar')
-
+            <!-- 页面侧边栏 /-->
             @include('layout.sidebar')
+            <!-- 页面js /-->
+            @include('layout.js')
 
             <div class="content-wrapper" id="pjax-container">
                 <div id="app">
                     @yield('content')
                 </div>
-
             </div>
 
+            <!-- 页面footer /-->
             @include('layout.footer')
-
-            <!-- Control Sidebar -->
-            <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-            </aside>
-
         </div>
-
     </body>
-    <!-- 页面js /-->
-    @include('layout.js')
 </html>

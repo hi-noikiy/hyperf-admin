@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Hyperf</title>
-</head>
-<body>
-      Hello, <br> You are using blade template now.
-</body>
-</html>
+<?php
+
+$title = '首页';
+?>
+@include('layout.breadcrumb', compact('title'))
+
+Hello, <br> You are using blade template now.

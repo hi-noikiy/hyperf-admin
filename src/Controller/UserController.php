@@ -49,25 +49,15 @@ class UserController extends AdminController
                 return $this->response->withCookie($cookie)->redirect('/admin');
             }
             $this->admin_toastr("用户名或者密码错误", 'error', 0);
-        } elseif ($token = $this->request->cookie('Authorization')) {
-            try {
-                $token = ucfirst($token);
-                $arr = explode('Bearer ', ucfirst($token));
-                $token = $arr[1] ?? '';
-                if (!empty($token) && $this->jwt->checkToken($token)) {
-                    $tokenObj = $this->jwt->getTokenObj($token);
-                    $userId = $tokenObj->getClaim('id');
-                    $user = AdminUser::where('id', $userId)->where('status', AdminUser::STATUS_ENABLE)->first();
-                    if (empty($user)) {
-                        throw new TokenValidException('登录态失效，请重新登录');
-                    }
-
-                    $request = $this->request->withAttribute('user', $user);
-                    Context::set(ServerRequestInterface::class, $request);
-                    return $this->response->redirect('/admin');
-                }
-            } catch (\Throwable $t) {
+        } elseif($tokenObj = $this->getTokenObj()) {
+            $userId = $tokenObj->getClaim('id');
+            $user = AdminUser::where('id', $userId)->where('status', AdminUser::STATUS_ENABLE)->first();
+            if (empty($user)) {
+                $request = $this->request->withAttribute('user', $user);
+                Context::set(ServerRequestInterface::class, $request);
+                return $this->response->redirect('/admin');
             }
+            $this->admin_toastr("登录态失效，请重新登录", 'error');
         }
 
         return $this->render('user.login', [], true);
@@ -91,18 +81,55 @@ class UserController extends AdminController
         return $this->response->redirect('/admin/user/login');
     }
 
-
     /**
-     * @RequestMapping(path="lockscreen")
-     * @Middleware(AuthMiddleware::class)
+     * @RequestMapping(path="lock")
      * 
      * 锁屏
      * @author Eric
+     * @param  string   $password   密码
      * @return view
      */
-    public function lockscreen()
+    public function lock()
     {
-        return $this->render('user.lockscreen', [], true);
+        $tokenObj = $this->getTokenObj();
+        if (empty($tokenObj) || empty($userId = $tokenObj->getClaim('id', ''))) {
+            return $this->response->redirect('/admin/user/login');
+        }
+        $user = AdminUser::where('id', $userId)->where('status', AdminUser::STATUS_ENABLE)->first();
+        if (empty($user)) {
+            return $this->response->redirect('/admin/user/login');
+        }
+        $token = 'Bearer '.(string) $this->jwt->getToken(['id' => $userId, 'lock' => true]);
+        $cookie = new Cookie('Authorization', $token);
+        return $this->render('user.lock', ['_user' => $user->toArray()], true)->withCookie($cookie);
+    }
+
+    /**
+     * @RequestMapping(path="unlock")
+     * 
+     * 解锁
+     * @author Eric
+     * @return view
+     */
+    public function unlock()
+    {
+        $password = htmlspecialchars($this->request->input('password', ''));
+        $tokenObj = $this->getTokenObj();
+        if (empty($tokenObj) || empty($userId = $tokenObj->getClaim('id', ''))) {
+            return $this->response->redirect('/admin/user/login');
+        }
+        $user = AdminUser::find($userId);
+        if (empty($user)) {
+            return $this->response->redirect('/admin/user/login');
+        }
+        if ($this->hash->check($password, $user->password)) {
+            $token = 'Bearer '.(string) $this->jwt->getToken(['id' => $user->id]);
+            $cookie = new Cookie('Authorization', $token);
+            return $this->response->redirect('/admin')->withCookie($cookie);
+        }
+
+        $this->admin_toastr("密码错误", 'error', 0);
+        return $this->response->redirect('/admin/user/lock');
     }
 
     /**

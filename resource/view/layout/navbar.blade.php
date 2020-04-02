@@ -1,3 +1,8 @@
+<style type="text/css">
+    @media only screen and (max-width: 479px) {
+    #lockscreen_label{display: none;}
+}
+</style>
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -54,9 +59,9 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/admin/user/lockscreen" title="锁屏">
+            <a class="nav-link" href="/admin/user/lock">
             <i class="fas fa-lock"></i>
-            {{ trans('admin.lockscreen') }}
+            <span id="lockscreen_label">{{ trans('admin.lockscreen') }}</span>
             </a>
         </li>
     </ul>

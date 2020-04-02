@@ -9,6 +9,7 @@ use Psr\Container\ContainerInterface;
 use Hyperf\Contract\SessionInterface;
 use Hyperf\View\RenderInterface;
 use Phper666\JwtAuth\Jwt;
+use Lcobucci\JWT\Token;
 use Illuminate\Support\MessageBag;
 use Oyhdd\Admin\Model\AdminMenu;
 
@@ -69,10 +70,12 @@ class AdminController
         if ($this->session->has('toastr')) {
             $data['_toastr'] = $this->session->remove('toastr');
         }
-        $user = $this->request->getAttribute('user');
-        $data['_user'] = [];
-        if (!empty($user)) {
-            $data['_user'] = $user->toArray();
+
+        if (!isset($data['_user'])) {
+            $data['_user'] = [];
+            if ($user = $this->request->getAttribute('user')) {
+                $data['_user'] = $user->toArray();
+            }
         }
 
         $uri = $this->request->getPathInfo();
@@ -87,10 +90,31 @@ class AdminController
      * @param string    $type      消息类型: success,info,warning,danger,maroon
      * @param int       $timeout   超时自动隐藏
      */
-    protected function admin_toastr(string $message = '', string $type = 'success', int $timeout = 2)
+    protected function admin_toastr(string $message = '', string $type = 'success', int $timeout = 2): void
     {
         $toastr = new MessageBag(get_defined_vars());
         $this->session->flash('toastr', $toastr);
+    }
+
+    /**
+     * get Token Object from cookie
+     *
+     * @return \Lcobucci\JWT\Token
+     */
+    protected function getTokenObj(): ?Token
+    {
+        try {
+            $token = $this->request->cookie('Authorization');
+            $token = ucfirst($token);
+            $arr = explode('Bearer ', ucfirst($token));
+            $token = $arr[1] ?? '';
+            if (!empty($token) && $this->jwt->checkToken($token)) {
+                return $this->jwt->getTokenObj($token);
+            }
+        } catch (\Throwable $t) {
+        }
+
+        return null;
     }
 
 }

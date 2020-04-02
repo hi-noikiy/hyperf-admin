@@ -59,6 +59,14 @@ class AuthMiddleware implements MiddlewareInterface
 
             $request = $request->withAttribute('user', $user);
             Context::set(ServerRequestInterface::class, $request);
+
+            // 当前已锁屏锁屏
+            $lock = $tokenObj->getClaim('lock', false);
+            var_dump($lock);
+            if ($lock) {
+                return $this->response->redirect('/admin/user/lock');
+            }
+
             return $handler->handle($request);
         } catch (TokenValidException $e) {
             $this->session->forget('Authorization');

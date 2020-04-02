@@ -1,3 +1,4 @@
+<title>{{config('admin.title')}} | {{ $title }}</title>
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
@@ -5,7 +6,7 @@
             <div class="col-sm-6">
                 <h3>
                     {{ $title }}
-                    <span style="font-size: 15px; color: #666;">{{ $description }}</span>
+                    <span style="font-size: 15px; color: #666;">{{ $description ?? '' }}</span>
                 </h3>
             </div>
             <div class="col-sm-6" style="font-size: 14px;">
@@ -35,8 +36,8 @@
                     @endforeach
                 </ol>
                 @else
-                <ol class="breadcrumb" style="margin-right: 30px;">
-                    <li><a href="/admin"><i class="fas fa-tachometer-alt"></i> {{ config('admin.home') }}</a></li>
+                <ol class="breadcrumb float-sm-right" style="margin-right: 30px;">
+                    <li><a href="/admin"><i class="fas fa-tachometer-alt"></i> {{ trans('admin.home') }}</a></li>
                 </ol>
                 @endif
             </div>
