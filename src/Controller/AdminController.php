@@ -85,9 +85,9 @@ class AdminController
      *
      * @param string    $message   提示消息
      * @param string    $type      消息类型: success,info,warning,danger,maroon
-     * @param array     $options   其他参数[timeout:超时自动隐藏(ms), title:标题, subtitle:子标题, icon:图标, image:图片, imageAlt: 图片说明]
+     * @param int       $timeout   超时自动隐藏
      */
-    protected function admin_toastr(string $message = '', string $type = 'success', array $options = [])
+    protected function admin_toastr(string $message = '', string $type = 'success', int $timeout = 2)
     {
         $toastr = new MessageBag(get_defined_vars());
         $this->session->flash('toastr', $toastr);

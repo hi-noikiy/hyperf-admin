@@ -23,3 +23,9 @@
 <script src="/vendor/hyperf-admin/AdminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Bootstrap Switch -->
 <script src="/vendor/hyperf-admin/AdminLTE/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<!-- Toastr -->
+<script src="/vendor/hyperf-admin/AdminLTE/plugins/toastr/toastr.min.js"></script>
+<!-- toastr -->
+@include('common.toastr')
+
+@include('layout.adminjs')

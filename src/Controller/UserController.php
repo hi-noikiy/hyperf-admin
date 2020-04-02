@@ -48,7 +48,7 @@ class UserController extends AdminController
                 $cookie = new Cookie('Authorization', $token);
                 return $this->response->withCookie($cookie)->redirect('/admin');
             }
-            $this->admin_toastr("用户名或者密码错误", 'danger', ['timeout' => 60, 'title' => "Error"]);
+            $this->admin_toastr("用户名或者密码错误", 'error', 0);
         } elseif ($token = $this->request->cookie('Authorization')) {
             try {
                 $token = ucfirst($token);
@@ -148,7 +148,7 @@ class UserController extends AdminController
 
         $user->customize_style = json_encode($customize_style);
         if ($user->save()) {
-            $this->admin_toastr("重置样式成功", 'success', ['timeout' => 2, 'title' => "Success"]);
+            $this->admin_toastr("重置样式成功", 'success');
             return [];
         }
         return [];

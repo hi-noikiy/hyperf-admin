@@ -10,8 +10,6 @@
         <!-- 页面css /-->
         @include('layout.css')
     </head>
-    <!-- 页面js /-->
-    @include('layout.js')
     <body class="hold-transition {{ join(' ', config('admin.layout')) }}">
         <div class="wrapper">
 
@@ -32,11 +30,10 @@
             <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
             </aside>
-            @include('layout.adminjs')
 
         </div>
 
-        <!-- toastr -->
-        @include('common.toastr')
     </body>
+    <!-- 页面js /-->
+    @include('layout.js')
 </html>

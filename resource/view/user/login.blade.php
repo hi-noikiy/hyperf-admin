@@ -16,6 +16,12 @@
     <link rel="stylesheet" href="/vendor/hyperf-admin/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/vendor/hyperf-admin/AdminLTE/dist/css/adminlte.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="/vendor/hyperf-admin/AdminLTE/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="/vendor/hyperf-admin/AdminLTE/plugins/toastr/toastr.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
 <body class="hold-transition login-page" @if(config('admin.login_background_image'))style="background: url({{config('admin.login_background_image')}}) no-repeat;background-size: cover;"@endif>
@@ -65,13 +71,16 @@
     </div>
     <!-- /.login-box -->
 
-    <!-- jQuery -->
-    <script src="/vendor/hyperf-admin/AdminLTE/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="/vendor/hyperf-admin/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="/vendor/hyperf-admin/AdminLTE/dist/js/adminlte.min.js"></script>
-
-    @include('common.toastr')
 </body>
+<!-- jQuery -->
+<script src="/vendor/hyperf-admin/AdminLTE/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/vendor/hyperf-admin/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/vendor/hyperf-admin/AdminLTE/dist/js/adminlte.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="/vendor/hyperf-admin/AdminLTE/plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="/vendor/hyperf-admin/AdminLTE/plugins/toastr/toastr.min.js"></script>
+@include('common.toastr')
 </html>
