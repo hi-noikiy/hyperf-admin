@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="/vendor/hyperf-admin/AdminLTE/plugins/toastr/toastr.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <style type="text/css">
+        .login-page{height: 80vh;}
+    </style>
 </head>
 
 <body class="hold-transition login-page" @if(config('admin.login_background_image'))style="background: url({{config('admin.login_background_image')}}) no-repeat;background-size: cover;"@endif>
@@ -37,7 +40,7 @@
 
                 <form action="/admin/user/login" method="post">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="{{ trans('admin.username') }}" name="username" value="{{ old('username') }}" required>
+                        <input type="text" class="form-control" placeholder="{{ trans('admin.username') }}" name="username" value="{{ $data['_user']['username'] ?? '' }}" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -45,7 +48,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="{{ trans('admin.password') }}" name="password" value="123456" required>
+                        <input type="password" class="form-control" placeholder="{{ trans('admin.password') }}" name="password" value="{{ $data['_user']['password'] ?? '' }}" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>

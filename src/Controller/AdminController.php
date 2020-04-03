@@ -12,6 +12,7 @@ use Phper666\JwtAuth\Jwt;
 use Lcobucci\JWT\Token;
 use Illuminate\Support\MessageBag;
 use Oyhdd\Admin\Model\AdminMenu;
+use Phper666\JwtAuth\Exception\TokenValidException;
 
 class AdminController
 {
@@ -104,14 +105,15 @@ class AdminController
     protected function getTokenObj(): ?Token
     {
         try {
-            $token = $this->request->cookie('Authorization');
+            $token = $this->request->cookie('Authorization', '');
             $token = ucfirst($token);
             $arr = explode('Bearer ', ucfirst($token));
             $token = $arr[1] ?? '';
             if (!empty($token) && $this->jwt->checkToken($token)) {
                 return $this->jwt->getTokenObj($token);
             }
-        } catch (\Throwable $t) {
+        } catch (TokenValidException $t) {
+            // var_dump("AdminController: ".$t->getMessage());
         }
 
         return null;

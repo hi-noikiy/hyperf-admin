@@ -1,7 +1,7 @@
 <style type="text/css">
     @media only screen and (max-width: 479px) {
-    #lockscreen_label{display: none;}
-}
+        #lockscreen_label{display: none;}
+    }
 </style>
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -35,7 +35,7 @@
                 <img src="{{ $data['_user']['avatar'] ?? ' ' }}" class="img-size-32 mr-2 ml-2 img-circle" alt="{{ $data['_user']['name'] ?? 'User Image' }}">
             </a>
 
-            <ul class="dropdown-menu dropdown-menu dropdown-menu-right">
+            <ul class="dropdown-menu dropdown-menu-right">
                 <li class="user-header">
                     <img src="{{ $data['_user']['avatar'] ?? '' }}" class="img img-circle" alt="{{ $data['_user']['name'] ?? 'User Image' }}">
                     <p>

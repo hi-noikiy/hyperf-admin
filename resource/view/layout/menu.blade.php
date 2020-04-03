@@ -6,7 +6,7 @@
             <a href="{{ $item['uri'] }}" class="nav-link {{ $item['active'] ? 'active' : '' }}">
         @endif
             <i class="nav-icon fas {{ $item['icon'] }}"></i>
-            <span>{{ $item['title'] }}</span>
+            <p>{{ $item['title'] }}</p>
         </a>
     </li>
 @else
@@ -14,7 +14,7 @@
         <a href="#" class="nav-link {{ $item['active'] ? 'active' : '' }}">
             <i class="nav-icon fas {{ $item['icon'] }}"></i>
             <p>
-                <span>{{ $item['title'] }}</span>
+                {{ $item['title'] }}
                 <i class="right fas fa-angle-left"></i>
             </p>
         </a>

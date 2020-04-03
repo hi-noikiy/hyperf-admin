@@ -40,7 +40,6 @@ class UserController extends AdminController
         if ($this->request->isMethod("POST")) {
             $username = htmlspecialchars($this->request->input('username', ''));
             $password = htmlspecialchars($this->request->input('password', ''));
-            $remember = intval($this->request->input('remember', 0));
 
             $user = AdminUser::where(['username' => $username, 'status' => AdminUser::STATUS_ENABLE])->first();
             if (!empty($user) && $this->hash->check($password, $user->password)) {
@@ -49,7 +48,7 @@ class UserController extends AdminController
                 return $this->response->withCookie($cookie)->redirect('/admin');
             }
             $this->admin_toastr("用户名或者密码错误", 'error', 0);
-        } elseif($tokenObj = $this->getTokenObj()) {
+        } elseif ($tokenObj = $this->getTokenObj()) {
             $userId = $tokenObj->getClaim('id');
             $user = AdminUser::where('id', $userId)->where('status', AdminUser::STATUS_ENABLE)->first();
             if (empty($user)) {
@@ -58,6 +57,7 @@ class UserController extends AdminController
                 return $this->response->redirect('/admin');
             }
             $this->admin_toastr("登录态失效，请重新登录", 'error');
+            return $this->response->redirect('/admin/user/logout');
         }
 
         return $this->render('user.login', [], true);

@@ -19,10 +19,17 @@
   <link rel="stylesheet" href="/vendor/hyperf-admin/AdminLTE/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
   <!-- Toastr -->
   <link rel="stylesheet" href="/vendor/hyperf-admin/AdminLTE/plugins/toastr/toastr.min.css">
+
+  <style type="text/css">
+    @media only screen and (max-width: 479px) {
+        #lockscreen_wrapper{margin-top: 15rem !important;}
+    }
+  </style>
+
 </head>
 <body class="hold-transition lockscreen" @if(config('admin.lockscreen.background_image'))style="background: url({{config('admin.lockscreen.background_image')}}) no-repeat;background-size: cover;"@endif>
 <!-- Automatic element centering -->
-<div class="lockscreen-wrapper" style="margin-top: 14.5rem;">
+<div class="lockscreen-wrapper" id="lockscreen_wrapper" style="margin-top: 20.5rem;">
   <div class="lockscreen-item" style="width: 60px;">
     <div class="lockscreen-image" style="margin-top: -70px;">
       <img src="{{ $data['_user']['avatar'] ?? '' }}" alt="User Image">
