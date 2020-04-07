@@ -15,7 +15,7 @@ class AdminUserPermission extends BaseModel
      *
      * @var string
      */
-    protected $table = 'admin_user_permission';
+    protected $table = 'admin_user_permissions';
     /**
      * The attributes that are mass assignable.
      *

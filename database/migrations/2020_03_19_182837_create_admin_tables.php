@@ -17,9 +17,9 @@ class CreateAdminTables extends Migration
     public function up(): void
     {
         /**
-         * admin_user
+         * admin_users
          */
-        Schema::create('admin_user', function (Blueprint $table) {
+        Schema::create('admin_users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('username', 190)->unique()->comment('账号');
             $table->string('password', 60)->comment('密码');
@@ -32,9 +32,9 @@ class CreateAdminTables extends Migration
         });
 
         /**
-         * admin_role
+         * admin_roles
          */
-        Schema::create('admin_role', function (Blueprint $table) {
+        Schema::create('admin_roles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50)->unique();
             $table->string('slug', 50)->unique();
@@ -42,9 +42,9 @@ class CreateAdminTables extends Migration
         });
 
         /**
-         * admin_permission
+         * admin_permissions
          */
-        Schema::create('admin_permission', function (Blueprint $table) {
+        Schema::create('admin_permissions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50)->unique();
             $table->string('slug', 50)->unique();
@@ -69,9 +69,9 @@ class CreateAdminTables extends Migration
         });
 
         /**
-         * admin_role_user
+         * admin_role_users
          */
-        Schema::create('admin_role_user', function (Blueprint $table) {
+        Schema::create('admin_role_users', function (Blueprint $table) {
             $table->integer('role_id');
             $table->integer('user_id');
             $table->index(['role_id', 'user_id']);
@@ -79,9 +79,9 @@ class CreateAdminTables extends Migration
         });
 
         /**
-         * admin_role_permission
+         * admin_role_permissions
          */
-        Schema::create('admin_role_permission', function (Blueprint $table) {
+        Schema::create('admin_role_permissions', function (Blueprint $table) {
             $table->integer('role_id');
             $table->integer('permission_id');
             $table->index(['role_id', 'permission_id']);
@@ -89,9 +89,9 @@ class CreateAdminTables extends Migration
         });
 
         /**
-         * admin_user_permission
+         * admin_user_permissions
          */
-        Schema::create('admin_user_permission', function (Blueprint $table) {
+        Schema::create('admin_user_permissions', function (Blueprint $table) {
             $table->integer('user_id');
             $table->integer('permission_id');
             $table->index(['user_id', 'permission_id']);
@@ -130,13 +130,13 @@ class CreateAdminTables extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admin_user');
-        Schema::dropIfExists('admin_role');
-        Schema::dropIfExists('admin_permission');
+        Schema::dropIfExists('admin_users');
+        Schema::dropIfExists('admin_roles');
+        Schema::dropIfExists('admin_permissions');
         Schema::dropIfExists('admin_menu');
-        Schema::dropIfExists('admin_user_permission');
-        Schema::dropIfExists('admin_role_user');
-        Schema::dropIfExists('admin_role_permission');
+        Schema::dropIfExists('admin_user_permissions');
+        Schema::dropIfExists('admin_role_users');
+        Schema::dropIfExists('admin_role_permissions');
         Schema::dropIfExists('admin_role_menu');
         Schema::dropIfExists('admin_operation_log');
     }
