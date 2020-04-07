@@ -23,7 +23,7 @@ class AdminUser extends BaseModel
      *
      * @var string
      */
-    protected $table = 'admin_user';
+    protected $table = 'admin_users';
     /**
      * The attributes that are mass assignable.
      *
