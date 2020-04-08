@@ -10,7 +10,7 @@ return [
     | login page.
     |
     */
-    'name' => '<span style="color:white"> Hyperf Admin </span>',
+    'name' => '<span style="color:white"> 消息中心 </span>',
 
     /*
     |--------------------------------------------------------------------------
@@ -64,4 +64,10 @@ return [
         'background_image' => '/vendor/hyperf-admin/AdminLTE/dist/img/bg.jpeg',
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | The Version of hyperf-admin
+    |--------------------------------------------------------------------------
+    */
+    'version' => '1.0.1',
 ];
