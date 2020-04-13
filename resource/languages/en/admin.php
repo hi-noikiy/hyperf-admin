@@ -13,4 +13,5 @@ return [
     'logout'        => 'Logout',
     'register_time' => 'Register time',
     'lockscreen'    => 'Lock Screen',
+    'menu'          => 'Menu',
 ];

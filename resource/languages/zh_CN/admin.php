@@ -13,4 +13,5 @@ return [
     'logout'        => '退出',
     'register_time' => '注册时间',
     'lockscreen'    => '锁屏',
+    'menu'          => '菜单',
 ];
