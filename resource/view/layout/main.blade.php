@@ -8,6 +8,9 @@
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- 页面css /-->
         @include('layout.css')
+
+        <!-- 页面js /-->
+        @include('layout.js')
     </head>
     <body class="hold-transition {{ join(' ', config('admin.layout')) }}">
         <div class="wrapper">
@@ -29,8 +32,8 @@
             <!-- 页面footer /-->
             @include('layout.footer')
         </div>
-
-        <!-- 页面js /-->
-        @include('layout.js')
+        <!-- toastr -->
+        @include('common.toastr')
+        @include('layout.adminjs')
     </body>
 </html>

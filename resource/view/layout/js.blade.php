@@ -1,5 +1,11 @@
 <!-- jQuery -->
 <script src="/vendor/hyperf-admin/AdminLTE/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="/vendor/hyperf-admin/AdminLTE/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
 <!-- Bootstrap 4 -->
 <script src="/vendor/hyperf-admin/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- SweetAlert2 -->
@@ -25,7 +31,3 @@
 <script src="/vendor/hyperf-admin/AdminLTE/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <!-- Toastr -->
 <script src="/vendor/hyperf-admin/AdminLTE/plugins/toastr/toastr.min.js"></script>
-<!-- toastr -->
-@include('common.toastr')
-
-@include('layout.adminjs')
