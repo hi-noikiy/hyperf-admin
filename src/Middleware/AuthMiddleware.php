@@ -62,7 +62,6 @@ class AuthMiddleware implements MiddlewareInterface
 
             // 当前已锁屏锁屏
             $lock = $tokenObj->getClaim('lock', false);
-            var_dump($lock);
             if ($lock) {
                 return $this->response->redirect('/admin/user/lock');
             }
