@@ -52,7 +52,7 @@ return [
     | Supported: "sidebar-mini", "layout-boxed", "layout-fixed", "layout-navbar-fixed", "layout-footer-fixed"
     |
     */
-    'layout' => ['sidebar-mini', 'layout-fixed'],
+    'layout' => ['sidebar-mini', 'layout-fixed', 'text-sm'],
 
     /*
     |--------------------------------------------------------------------------

@@ -31,3 +31,4 @@
 <script src="/vendor/hyperf-admin/AdminLTE/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <!-- Toastr -->
 <script src="/vendor/hyperf-admin/AdminLTE/plugins/toastr/toastr.min.js"></script>
+<script src="/vendor/hyperf-admin/AdminLTE/plugins/fontawesome-iconpicker/dist/js/fontawesome-iconpicker.min.js"></script>

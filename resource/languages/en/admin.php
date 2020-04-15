@@ -14,4 +14,10 @@ return [
     'register_time' => 'Register time',
     'lockscreen'    => 'Lock Screen',
     'menu'          => 'Menu',
+    'edit'          => 'Edit',
+    'title'         => 'Title',
+    'input'         => 'Input',
+    'create'        => 'Create',
+    'save'          => 'Save',
+    'new'           => 'New',
 ];

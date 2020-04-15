@@ -14,4 +14,10 @@ return [
     'register_time' => '注册时间',
     'lockscreen'    => '锁屏',
     'menu'          => '菜单',
+    'edit'          => '编辑',
+    'title'         => '标题',
+    'input'         => '输入',
+    'create'        => '创建',
+    'save'          => '保存',
+    'new'           => '新增',
 ];
