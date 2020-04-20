@@ -3,7 +3,9 @@
 <link rel="stylesheet" href="/vendor/hyperf-admin/AdminLTE/plugins/fontawesome-iconpicker/dist/css/fontawesome-iconpicker.min.css">
 <!-- Ionicons -->
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-
+<!-- DataTables -->
+<link rel="stylesheet" href="/vendor/hyperf-admin/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="/vendor/hyperf-admin/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <!-- SweetAlert2 -->
 <link rel="stylesheet" href="/vendor/hyperf-admin/AdminLTE/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 <!-- Toastr -->

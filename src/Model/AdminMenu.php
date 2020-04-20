@@ -61,7 +61,7 @@ class AdminMenu extends BaseModel
     public static function getMenuTree(string $uri = ''): array
     {
         $tree = [];
-        $items = AdminMenu::all()->toArray();
+        $items = AdminMenu::orderBy('order')->get()->toArray();
         if (empty($items)) {
             return $tree;
         }

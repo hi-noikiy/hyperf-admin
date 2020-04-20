@@ -6,7 +6,7 @@
             <div class="col-sm-6">
                 <h3>
                     {{ $title }}
-                    <span style="font-size: 15px; color: #666;">{{ $description ?? '' }}</span>
+                    <span class="font-weight-light" style="font-size: 15px; color: #666;">{{ $description ?? '' }}</span>
                 </h3>
             </div>
             <div class="col-sm-6" style="font-size: 14px;">

@@ -8,10 +8,13 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="/vendor/hyperf-admin/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="/vendor/hyperf-admin/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/vendor/hyperf-admin/AdminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/vendor/hyperf-admin/AdminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/vendor/hyperf-admin/AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- SweetAlert2 -->
 <script src="/vendor/hyperf-admin/AdminLTE/plugins/sweetalert2/sweetalert2.min.js"></script></script>
-<!-- AdminLTE App -->
-<script src="/vendor/hyperf-admin/AdminLTE/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/vendor/hyperf-admin/AdminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- Select2 -->
@@ -32,3 +35,5 @@
 <!-- Toastr -->
 <script src="/vendor/hyperf-admin/AdminLTE/plugins/toastr/toastr.min.js"></script>
 <script src="/vendor/hyperf-admin/AdminLTE/plugins/fontawesome-iconpicker/dist/js/fontawesome-iconpicker.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/vendor/hyperf-admin/AdminLTE/dist/js/adminlte.min.js"></script>
