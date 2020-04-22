@@ -120,4 +120,25 @@ class AdminController
         return null;
     }
 
+    /**
+     * 接口返回
+     * @author Eric
+     * @param  array       $data
+     * @param  int         $code
+     * @param  string      $msg
+     * @return array
+     */
+    public function response(array $data = [], int $code = 0, string $msg = 'success'): array
+    {
+        return compact('code', 'msg', 'data');
+    }
+
+    /**
+     * Redirect to a url with a status.
+     */
+    public function redirect(string $toUrl, int $status = 302, string $schema = 'http')
+    {
+        return $this->response->redirect($toUrl, $status, $schema);
+    }
+
 }
