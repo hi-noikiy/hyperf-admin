@@ -70,7 +70,11 @@ class AuthMiddleware implements MiddlewareInterface
         } catch (TokenValidException $e) {
             $this->session->forget('Authorization');
         } catch (\Throwable $t) {
-            var_dump($t->getMessage());
+            $error = $t->getMessage();
+            var_dump($error);
+            $request = $request->withAttribute('error', $error);
+            Context::set(ServerRequestInterface::class, $request);
+            return $this->response->redirect('/admin/user/error');
         }
 
         return $this->response->redirect('/admin/user/login');

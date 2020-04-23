@@ -193,4 +193,20 @@ class UserController extends AdminController
         }
         return [];
     }
+
+    /**
+     * @RequestMapping(path="error")
+     * 
+     * 错误跳转页
+     * @author Eric
+     * @param  string   $exception
+     * @return array
+     */
+    public function error()
+    {
+        $error = $this->request->getAttribute('error', '');
+        return $this->render('common.500', ['error' => $error], true);
+    }
+
+
 }
