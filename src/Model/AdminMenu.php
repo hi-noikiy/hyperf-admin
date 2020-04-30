@@ -14,8 +14,8 @@ use Illuminate\Support\Arr;
  * @property string $icon 
  * @property string $uri 
  * @property string $permission 
- * @property \Carbon\Carbon $created_at 
- * @property \Carbon\Carbon $updated_at 
+ * @property \Carbon\Carbon $create_time 
+ * @property \Carbon\Carbon $update_time 
  */
 class AdminMenu extends BaseModel
 {
@@ -36,7 +36,7 @@ class AdminMenu extends BaseModel
      *
      * @var array
      */
-    protected $casts = ['id' => 'integer', 'parent_id' => 'integer', 'order' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    protected $casts = ['id' => 'integer', 'parent_id' => 'integer', 'order' => 'integer', 'create_time' => 'datetime', 'update_time' => 'datetime'];
 
     protected $hidden = [
         'password'

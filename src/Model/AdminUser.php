@@ -13,8 +13,8 @@ use Oyhdd\Admin\Model\AdminRole;
  * @property string $name 
  * @property string $avatar 
  * @property string $remember_token 
- * @property \Carbon\Carbon $created_at 
- * @property \Carbon\Carbon $updated_at 
+ * @property \Carbon\Carbon $create_time 
+ * @property \Carbon\Carbon $update_time 
  */
 class AdminUser extends BaseModel
 {
@@ -35,7 +35,7 @@ class AdminUser extends BaseModel
      *
      * @var array
      */
-    protected $casts = ['id' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    protected $casts = ['id' => 'integer', 'create_time' => 'datetime', 'update_time' => 'datetime'];
 
     protected $hidden = ['password', 'remember_token'];
 

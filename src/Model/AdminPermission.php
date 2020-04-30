@@ -8,8 +8,8 @@ namespace Oyhdd\Admin\Model;
  * @property string $slug 
  * @property string $http_method 
  * @property string $http_path 
- * @property \Carbon\Carbon $created_at 
- * @property \Carbon\Carbon $updated_at 
+ * @property \Carbon\Carbon $create_time 
+ * @property \Carbon\Carbon $update_time 
  */
 class AdminPermission extends BaseModel
 {
@@ -30,5 +30,5 @@ class AdminPermission extends BaseModel
      *
      * @var array
      */
-    protected $casts = ['id' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    protected $casts = ['id' => 'integer', 'create_time' => 'datetime', 'update_time' => 'datetime'];
 }

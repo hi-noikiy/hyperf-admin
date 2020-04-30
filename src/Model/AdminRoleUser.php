@@ -5,8 +5,8 @@ namespace Oyhdd\Admin\Model;
 /**
  * @property int $role_id 
  * @property int $permission_id 
- * @property \Carbon\Carbon $created_at 
- * @property \Carbon\Carbon $updated_at 
+ * @property \Carbon\Carbon $create_time 
+ * @property \Carbon\Carbon $update_time 
  */
 class AdminRoleUser extends BaseModel
 {
@@ -27,5 +27,5 @@ class AdminRoleUser extends BaseModel
      *
      * @var array
      */
-    protected $casts = ['role_id' => 'integer', 'permission_id' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    protected $casts = ['role_id' => 'integer', 'permission_id' => 'integer', 'create_time' => 'datetime', 'update_time' => 'datetime'];
 }

@@ -9,8 +9,8 @@ namespace Oyhdd\Admin\Model;
  * @property string $method 
  * @property string $ip 
  * @property string $input 
- * @property \Carbon\Carbon $created_at 
- * @property \Carbon\Carbon $updated_at 
+ * @property \Carbon\Carbon $create_time 
+ * @property \Carbon\Carbon $update_time 
  */
 class AdminOperationLog extends BaseModel
 {
@@ -31,5 +31,5 @@ class AdminOperationLog extends BaseModel
      *
      * @var array
      */
-    protected $casts = ['id' => 'integer', 'user_id' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    protected $casts = ['id' => 'integer', 'user_id' => 'integer', 'create_time' => 'datetime', 'update_time' => 'datetime'];
 }
